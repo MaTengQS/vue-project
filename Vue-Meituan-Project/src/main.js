@@ -16,12 +16,12 @@ import '@/assets/ali-fonts/iconfont.css'
 // 图片懒加载
 import VueLazyload from 'vue-lazyload'
 
-Vue.use(Mint)
-
 Vue.use(VueLazyload, {
   loading: '/static/loading-bars.svg'
   // loading: require('@/assets/img/logo.png')
 })
+
+Vue.use(Mint)
 
 Vue.config.productionTip = false
 

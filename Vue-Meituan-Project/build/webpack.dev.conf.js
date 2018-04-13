@@ -9,9 +9,20 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const portfinder = require('portfinder')
+//加载本地数据
+const express = require('express')
+const app = express()
 
 const HOST = process.env.HOST
 const PORT = process.env.PORT && Number(process.env.PORT)
+
+// 接口请求 -> 商家模块 mock
+let sellerData = require('../src/mock/seller.json')
+let indexListData = require('../src/mock/index-list.json')
+let restaurantList = require('../src/mock/restaurant-list.json')
+let findList = require('../src/mock/find-list.json')
+let apiRouter = express.Router()
+app.use('/api',apiRouter)
 
 const devWebpackConfig = merge(baseWebpackConfig, {
   module: {
@@ -42,6 +53,15 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     quiet: true, // necessary for FriendlyErrorsPlugin
     watchOptions: {
       poll: config.dev.poll,
+    },
+    before(app){
+      app.get('/indexList',(err,req,res)=>{
+        if(err) throw err
+        res.json({
+          code:0,
+          data:indexListData
+        })
+      })
     }
   },
   plugins: [

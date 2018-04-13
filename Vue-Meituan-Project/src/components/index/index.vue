@@ -18,6 +18,15 @@
                         :txt="item.txt" @click="toList(item)"></types-item>
         </div>
 
+        <!-- 横线分隔条 -->
+        <cross-line></cross-line>
+
+        <!-- 附近商家 -->
+        <div>
+          <title-bar txt="附近商家"></title-bar>
+          <seller-list-item></seller-list-item>
+        </div>
+
         <tab-bar></tab-bar>
     </div>
 </template>
@@ -25,7 +34,19 @@
 <script>
 import TabBar from '@/components/base/tab-bar/tab-bar'
 import TypesItem from '@/components/base/types-item/types-item'
+import CrossLine from '@/components/base/cross-line/cross-line'
+import TitleBar from '@/components/base/title-bar/title-bar'
+import SellerListItem from '@/components/base/seller-list-item/seller-list-item'
+import axios from 'axios'
+
 export default {
+  components: {
+    TabBar,
+    TypesItem,
+    CrossLine,
+    TitleBar,
+    SellerListItem
+  },
   data () {
     return {
       swipeData: [
@@ -66,21 +87,31 @@ export default {
           ico: require('./img/types/types (6).png'),
           txt: '精品小吃'
         }
-      ]
+      ],
+      indexLIst: []
     }
   },
-  components: {
-    TabBar,
-    TypesItem
-  },
-
+  props: {},
+  watch: {},
   methods: {
     toList (item) {
       this.$router.push({path: '/restaurant_list'})
+    },
+    _initIndexListData () {
+      axios.get('/api/indexList').then(res => {
+        console.log(res)
+      }).catch(err => {
+        console.log(err)
+      })
     }
   },
-
-  computed: {}
+  filters: {},
+  computed: {},
+  created () {
+    this._initIndexListData()
+  },
+  mounted () {},
+  destroyed () {}
 }
 
 </script>
