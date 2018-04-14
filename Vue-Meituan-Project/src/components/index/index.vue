@@ -24,7 +24,10 @@
         <!-- 附近商家 -->
         <div>
           <title-bar txt="附近商家"></title-bar>
-          <seller-list-item></seller-list-item>
+          <seller-list-item v-for="item in indexLIst"
+                            :key="item.name"
+                            :data="item"
+                            @toRestaurant="toRestaurant()"></seller-list-item>
         </div>
 
         <tab-bar></tab-bar>
@@ -97,9 +100,18 @@ export default {
     toList (item) {
       this.$router.push({path: '/restaurant_list'})
     },
+    toRestaurant () {
+      this.$router.push({
+        path: 'restaurant_list'
+      })
+    },
     _initIndexListData () {
       axios.get('/api/indexList').then(res => {
         console.log(res)
+        if (res.data.code === 0) {
+          this.indexLIst = res.data.data.data.poilist
+          console.log(this.indexLIst)
+        }
       }).catch(err => {
         console.log(err)
       })
