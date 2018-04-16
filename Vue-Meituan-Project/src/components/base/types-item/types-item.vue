@@ -28,6 +28,7 @@ export default {
   methods: {
     toList () {
       this.$emit('toList')
+      console.log('event on clicked')
     }
   },
 

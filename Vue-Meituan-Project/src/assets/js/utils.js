@@ -515,7 +515,7 @@ let utils = {
       return str.replace(/\B(?=(\d{3})+(?!\d))/g, ',') // 1,234,567,890
 
       // return str.split('').reverse().reduce((prev, next, index) => {
-         // return ((index % 3) ? next : (next + ',')) + prev
+      // return ((index % 3) ? next : (next + ',')) + prev
       // })
     },
 

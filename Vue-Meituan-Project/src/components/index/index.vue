@@ -15,14 +15,14 @@
             <types-item v-for="item in types"
                         :key="item.ico"
                         :ico="item.ico"
-                        :txt="item.txt" @click="toList(item)"></types-item>
+                        :txt="item.txt" @toList="toList(item)"></types-item>
         </div>
 
         <!-- 横线分隔条 -->
         <cross-line></cross-line>
 
         <!-- 附近商家 -->
-        <div>
+        <div class="nearby">
           <title-bar txt="附近商家"></title-bar>
           <seller-list-item v-for="item in indexLIst"
                             :key="item.name"
@@ -102,7 +102,7 @@ export default {
     },
     toRestaurant () {
       this.$router.push({
-        path: 'restaurant_list'
+        path: 'restaurant'
       })
     },
     _initIndexListData () {
@@ -144,6 +144,10 @@ export default {
         overflow: hidden;
         padding-bottom: 20px;
         background-color: #fff;
+    }
+    .nearby {
+      margin-bottom: 50px;
+      background-color: #fff;
     }
 }
 </style>

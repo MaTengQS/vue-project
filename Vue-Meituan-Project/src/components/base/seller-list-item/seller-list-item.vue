@@ -1,6 +1,6 @@
 <!-- 商家列表 组件 -->
 <template>
-  <div class="seller-list-item">
+  <div class="seller-list-item" @click="toRestaurant(data)">
     <div class="left">
       <img v-lazy="data.pic_url">
     </div>
@@ -9,14 +9,20 @@
       <div class="name">{{ data.name }}</div>
 
       <div class="mid clearfix">
-        <star class="lf" :size="24" :score="data.wm_poi_score"></star>
+        <star class="fl" :size="24" :score="data.wm_poi_score"></star>
         <span class="count fl">月销{{ data.month_sale_num }}</span>
         <span class="distance fr">{{ data.distance }}</span>
         <span class="time fr">{{ data.avg_delivery_time }}分钟</span>
       </div>
 
-      <div>
-        <span>11</span>
+      <div class="fee">
+        <span class="start">{{ data.min_price_tip }}</span>
+        <span class="deliver">{{ data.shipping_fee_tip}}</span>
+        <span class="average">{{ data.average_price_tip }}</span>
+      </div>
+
+      <div class="activity" v-for="sup in data.discounts2" :key="sup.index">
+        <p><img :src="sup.icon_url">{{ sup.info }}</p>
       </div>
     </div>
   </div>
@@ -41,7 +47,12 @@ export default {
     }
   },
   watch: {},
-  methods: {},
+  methods: {
+    toRestaurant (data) {
+      console.log(data)
+      this.$emit('toRestaurant', data)
+    }
+  },
   filters: {},
   computed: {},
   created () {},
@@ -56,10 +67,11 @@ export default {
 .seller-list-item {
   margin-bottom: 5px;
   display: flex;
+  flex-direction: row;
   padding: 10px 0;
   overflow: hidden;
-  @include onepx('bottom');
-  &last-child {
+  @include onepx('bottom')
+  &:last-child {
     &:after {
       border-top: 0;
     }
@@ -105,6 +117,37 @@ export default {
         @include right-bar();
       }
     }
+    .fee {
+      flex: 1;
+      font-size: 13px;
+      margin-top: 7px;
+      span {
+        display: inline-block;
+        color: #656565;
+      }
+      .start {
+        @include right-bar();
+      }
+      .deliver {
+        @include right-bar();
+      }
+      .average {}
+    }
+    .activity {
+      flex: 1;
+      font-size: 13px;
+      color: #b0b0b0;
+      margin-top: 7px;
+      p {
+        @include ellipsis(1)
+      }
+      img {
+        width: 16px;
+        height: 16px;
+        margin-right: 5px;
+        vertical-align: top;
+      }
+    }
   }
-}
+  }
 </style>

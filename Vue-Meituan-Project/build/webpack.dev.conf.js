@@ -18,7 +18,8 @@ let indexListData = require('../src/mock/index-list.json')
 let restaurantList = require('../src/mock/restaurant-list.json')
 let findList = require('../src/mock/find-list.json')
 let apiRouter = express.Router()
-app.use('/api',apiRouter)
+
+// app.use('/api',apiRouter)
 
 const HOST = process.env.HOST
 const PORT = process.env.PORT && Number(process.env.PORT)
@@ -45,6 +46,9 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     compress: true,
     host: HOST || config.dev.host,
     port: PORT || config.dev.port,
+    disableHostCheck: true,
+    historyApiFallback: true,
+    noInfo: true,
     open: config.dev.autoOpenBrowser,
     overlay: config.dev.errorOverlay
       ? { warnings: false, errors: true }
@@ -60,8 +64,14 @@ const devWebpackConfig = merge(baseWebpackConfig, {
         res.json({
           code:0,
           data:indexListData
-        })  
-      })    
+        })
+      })
+      app.get('/api/restaurantList',(req,res) => {
+        res.json({
+          code: 0,
+          data:restaurantList
+        })
+      })
     }  
   },
   plugins: [
