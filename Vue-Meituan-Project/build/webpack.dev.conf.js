@@ -72,6 +72,12 @@ const devWebpackConfig = merge(baseWebpackConfig, {
           data:restaurantList
         })
       })
+      app.get('/api/seller',(req,res) => {
+        res.json({
+          code: 0,
+          data:sellerData.seller
+        })
+      })
     }  
   },
   plugins: [

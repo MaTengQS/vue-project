@@ -1,6 +1,22 @@
-<!--  -->
+<!-- 商家模块 点菜页面 -->
 <template>
-  <div>111</div>
+  <div>
+    <!-- 左右联动 -->
+   <div>
+     <div>
+       <ul>
+         <li>
+           111
+           <span>
+             <span>
+               1111
+             </span>
+           </span>
+         </li>
+       </ul>
+     </div>
+   </div>
+  </div>
 </template>
 
 <script>
