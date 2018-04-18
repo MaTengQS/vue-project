@@ -87,6 +87,11 @@
           </div>
         </div>
       </transition>
+
+      <!-- 返回按钮 -->
+      <div class="back" @click="back">
+        <i class="icon-arrow_lift"></i>
+      </div>
   </div>
 </template>
 
@@ -109,7 +114,13 @@ export default {
     }
   },
   watch: {},
-  methods: {},
+  methods: {
+    back () {
+      this.$router.push({
+        path: '/index'
+      })
+    }
+  },
   filters: {},
   computed: {},
   beforeMount () {},
@@ -375,6 +386,23 @@ export default {
       height: 32px;
       font-size: 32px;
       margin: -50px auto 0;
+    }
+  }
+  //返回按钮
+  .back {
+    position: fixed;
+    top: 25px;
+    right: 19px;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    i {
+      display: block;
+      padding: 7px;
+      font-size: 20px;
+      color: #fff
     }
   }
 }
