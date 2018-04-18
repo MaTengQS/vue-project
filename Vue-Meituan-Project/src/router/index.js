@@ -26,6 +26,16 @@ const Goods = (resolve) => {
     resolve(module)
   })
 }
+const Ratings = (resolve) => {
+  import('@/components/index/restaurant-detail/ratings/ratings').then((module) => {
+    resolve(module)
+  })
+}
+const Seller = (resolve) => {
+  import('@/components/index/restaurant-detail/seller/seller').then((module) => {
+    resolve(module)
+  })
+}
 
 export default new Router({
   routes: [
@@ -50,6 +60,14 @@ export default new Router({
         {
           path: 'goods',
           component: Goods
+        },
+        {
+          path: 'ratings',
+          component: Ratings
+        },
+        {
+          path: 'seller',
+          component: Seller
         }
       ]
     }

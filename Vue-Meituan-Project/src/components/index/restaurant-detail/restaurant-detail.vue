@@ -1,9 +1,22 @@
 <!-- 商家详情页 -->
 <template>
-  <div>
+  <div class="restaurant-detail">
     <!-- 商家模块头部 -->
     <seller-header :seller='seller'></seller-header>
-    11111
+   <div class="tab">
+     <div class="tab-item">
+       <router-link to="./goods">点菜</router-link>
+     </div>
+      <div class="tab-item">
+        <router-link to="./ratings">评价</router-link>
+      </div>
+      <div class="tab-item">
+        <router-link to="./seller">商家</router-link>
+      </div>
+   </div>
+   <keep-alive>
+      <router-view :seller="seller"></router-view>
+    </keep-alive>
   </div>
 </template>
 
@@ -47,4 +60,30 @@ export default {
 }
 </script>
 <style lang='scss' scoped>
+@import '~@/assets/scss/const.scss';
+@import '~@/assets/scss/mixin.scss';
+
+.restaurant-detail {
+  .tab {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    @include onepx('bottom');
+    .tab-item {
+      flex: 1;
+      background-color: #fff;
+      a {
+        display: inline-block;
+        font-size: 14px;
+        color: rgb(77, 85, 93);
+        &.router-link-active {
+          color: rgb(240, 20, 20)
+        }
+      }
+    }
+  }
+}
 </style>

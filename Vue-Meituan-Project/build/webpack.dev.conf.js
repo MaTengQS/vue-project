@@ -78,6 +78,12 @@ const devWebpackConfig = merge(baseWebpackConfig, {
           data:sellerData.seller
         })
       })
+      app.get('/api/goods',(req,res) => {
+        res.json({
+          code:0,
+          data:sellerData.goods
+        })
+      })
     }  
   },
   plugins: [
