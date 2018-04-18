@@ -11,6 +11,7 @@
 import SellerHeader from '@/components/base/seller-header/seller-header'
 import utils from '@/assets/js/utils'
 import axios from 'axios'
+
 export default {
   components: {
     SellerHeader
